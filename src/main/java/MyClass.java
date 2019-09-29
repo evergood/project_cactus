@@ -8,27 +8,24 @@ public class MyClass {
         StringBuilder outputString = new StringBuilder();
         char[] alphabetChar = "abcdefghijklmnopqrstuvwxyz".toCharArray();
         List<Character> alphabet = new ArrayList<>();
-        for(char c : alphabetChar){
+        for(char c : alphabetChar)
             alphabet.add(c);
-        }
-        for (String string:inputString.split(" ")){
+        for (String string:inputString.split(" "))
             outputString.append(stringReverse(string,alphabet)).append(" ");
-        }
         System.out.println(outputString);
     }
 
     public static StringBuilder stringReverse (String string, List alphabet){
         StringBuilder reversedString = new StringBuilder();
-        Map<Integer, Character> charMap = new HashMap<>();
+        Map<Integer, Character> charMap = new TreeMap<>();
         for(int i = string.length()-1; i >= 0; i--){
-            if(alphabet.contains(string.charAt(i))){
+            if(alphabet.contains(string.charAt(i)))
                 reversedString.append(string.charAt(i));
-            } else
+             else
                 charMap.put(i, string.charAt(i));
         }
-        for(Map.Entry<Integer,Character> entry : charMap.entrySet()){
+        for(Map.Entry<Integer,Character> entry : charMap.entrySet())
             reversedString.insert(entry.getKey(), (Object) entry.getValue());
-        }
         return reversedString;
     }
 }
