@@ -1,10 +1,9 @@
 package testPackage;
-
-import tmp.StringReverser_old;
+import defaultPackage.StringReverser;
 
 public class MyClassTest {
     public static void main(String[] args) {
-        StringReverser_old stringReverser = new StringReverser_old();
-        stringReverser.start();
+        StringReverser stringReverser = new StringReverser();
+        System.out.println(stringReverser.start());
     }
 }

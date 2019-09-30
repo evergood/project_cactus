@@ -3,31 +3,42 @@ package defaultPackage;
 import java.util.*;
 
 public class StringReverser {
-    public  void start() {
+    public String start() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input string to reverse");
         String inputString = scanner.nextLine();
         StringBuilder outputString = new StringBuilder();
-        char[] alphabetChar = "abcdefghijklmnopqrstuvwxyz".toCharArray();
-        List<Character> alphabet = new ArrayList<>();
-        for(char c : alphabetChar)
-            alphabet.add(c);
-        for (String string:inputString.split(" "))
-            outputString.append(stringReverse(string,alphabet)).append(" ");
-        System.out.println(outputString);
+        for (String string : inputString.split(" ")){
+            outputString = outputString.append(stringReverse(string)).append(" ");
+        }
+        return outputString.toString();
     }
 
-    public static StringBuilder stringReverse (String string, List alphabet){
+    private static StringBuilder stringReverse(String string) {
+        String inputString = string;
+        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        char[] inputStringArray = inputString.toCharArray();
         StringBuilder reversedString = new StringBuilder();
-        Map<Integer, Character> charMap = new TreeMap<>();
-        for(int i = string.length()-1; i >= 0; i--){
-            if(alphabet.contains(string.charAt(i)))
-                reversedString.append(string.charAt(i));
-             else
-                charMap.put(i, string.charAt(i));
+        char[] reversedStringArray = new char[inputString.length()];
+        for (int i = 0; i < inputString.length(); i++) {
+                if (alphabet.indexOf(inputString.charAt(i)) == -1) {
+                    reversedStringArray[i] = inputString.charAt(i);
+                    inputStringArray[i] = '\u0000';
+                }
         }
-        for(Map.Entry<Integer,Character> entry : charMap.entrySet())
-            reversedString.insert(entry.getKey(), (Object) entry.getValue());
+        for (char c:inputStringArray){
+            if (c != '\u0000'){
+                for (int i = reversedStringArray.length-1; i >= 0; i--){
+                    if (reversedStringArray[i] == '\u0000'){
+                        reversedStringArray[i] = c;
+                        break;
+                    }
+                }
+            }
+        }
+        for (char c:reversedStringArray){
+            reversedString.append(c);
+        }
         return reversedString;
     }
 }
