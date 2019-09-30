@@ -1,7 +1,9 @@
+package defaultPackage;
+
 import java.util.*;
 
-public class MyClass {
-    public static void main(String[] args) {
+public class StringReverser {
+    public  void start() {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Input string to reverse");
         String inputString = scanner.nextLine();
