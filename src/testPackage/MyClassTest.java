@@ -1,6 +1,6 @@
 package testPackage;
 
-import defaultPackage.StringReverser_old;
+import tmp.StringReverser_old;
 
 public class MyClassTest {
     public static void main(String[] args) {
