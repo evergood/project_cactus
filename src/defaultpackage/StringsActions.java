@@ -1,6 +1,4 @@
-package defaultPackage;
-
-import java.util.*;
+package defaultpackage;
 
 public class StringUtils {
     public  String makeAnagram(String sentence) {
