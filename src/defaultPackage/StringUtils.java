@@ -2,13 +2,10 @@ package defaultPackage;
 
 import java.util.*;
 
-public class StringReverser {
-    public String start() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Input string to reverse");
-        String inputString = scanner.nextLine();
+public class StringUtils {
+    public  String makeAnagram(String sentence) {
         StringBuilder outputString = new StringBuilder();
-        for (String string : inputString.split(" ")){
+        for (String string : sentence.split(" ")){
             outputString = outputString.append(stringReverse(string)).append(" ");
         }
         return outputString.toString();

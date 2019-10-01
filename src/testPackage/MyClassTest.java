@@ -1,9 +1,10 @@
 package testPackage;
-import defaultPackage.StringReverser;
+import defaultPackage.StringUtils;
 
 public class MyClassTest {
     public static void main(String[] args) {
-        StringReverser stringReverser = new StringReverser();
-        System.out.println(stringReverser.start());
+        StringUtils util = new StringUtils();
+        String result = util.makeAnagram("rrr44t ee777v");
+        System.out.println(result);
     }
 }
