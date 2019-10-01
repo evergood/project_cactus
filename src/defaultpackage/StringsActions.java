@@ -1,19 +1,28 @@
 package defaultpackage;
 
-public class StringUtils {
-    public  String makeAnagram(String sentence) {
+import java.io.IOException;
+
+public class StringsActions {
+    public  String makeAnagram(String sentence) throws IOException {
+        final String space = " ";
+        String inputString;
+        if (sentence.length() > 0 & sentence != null){
+            inputString = sentence;
+        } else {
+            throw new IOException();
+        }
+
         StringBuilder outputString = new StringBuilder();
-        for (String string : sentence.split(" ")){
+        for (String string : inputString.split(space)){
             outputString = outputString.append(stringReverse(string)).append(" ");
         }
-        return outputString.toString();
+        return outputString.toString().trim();
     }
 
-    private static StringBuilder stringReverse(String string) {
+    private static String stringReverse(String string) {
         String inputString = string;
-        String alphabet = "abcdefghijklmnopqrstuvwxyz";
+        final String alphabet = "abcdefghijklmnopqrstuvwxyz";
         char[] inputStringArray = inputString.toCharArray();
-        StringBuilder reversedString = new StringBuilder();
         char[] reversedStringArray = new char[inputString.length()];
         for (int i = 0; i < inputString.length(); i++) {
                 if (alphabet.indexOf(inputString.charAt(i)) == -1) {
@@ -31,9 +40,7 @@ public class StringUtils {
                 }
             }
         }
-        for (char c:reversedStringArray){
-            reversedString.append(c);
-        }
+        String reversedString = new String(reversedStringArray);
         return reversedString;
     }
 }
