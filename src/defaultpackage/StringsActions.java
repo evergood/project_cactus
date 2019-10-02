@@ -1,32 +1,31 @@
 package defaultpackage;
 
-import java.io.IOException;
-
 public class StringsActions {
-    public  String makeAnagram(String sentence) throws IOException {
-        final String space = " ";
-        String inputString;
-        if (sentence.length() > 0 & sentence != null){
-            inputString = sentence;
-        } else {
-            throw new IOException();
-        }
-
+    final static String space = " ";
+    public  String makeAnagram(String sentence)  {
+        validate(sentence);
         StringBuilder outputString = new StringBuilder();
-        for (String string : inputString.split(space)){
+        for (String string : sentence.split(space)){
             outputString = outputString.append(stringReverse(string)).append(" ");
         }
         return outputString.toString().trim();
     }
 
+    private static void validate (String string){
+        if (string.length()<=0){
+            throw new IllegalArgumentException();
+        } else if (string == null){
+            throw new NullPointerException();
+        } else return;
+    }
+
+
     private static String stringReverse(String string) {
-        String inputString = string;
-        final String alphabet = "abcdefghijklmnopqrstuvwxyz";
-        char[] inputStringArray = inputString.toCharArray();
-        char[] reversedStringArray = new char[inputString.length()];
-        for (int i = 0; i < inputString.length(); i++) {
-                if (alphabet.indexOf(inputString.charAt(i)) == -1) {
-                    reversedStringArray[i] = inputString.charAt(i);
+        char[] inputStringArray = string.toCharArray();
+        char[] reversedStringArray = new char[string.length()];
+        for (int i = 0; i < string.length(); i++) {
+                if (!Character.isLetter(string.charAt(i))) {
+                    reversedStringArray[i] = string.charAt(i);
                     inputStringArray[i] = '\u0000';
                 }
         }
