@@ -1,11 +1,9 @@
 package testpackage;
-import defaultpackage.StringsActions;
-
-import java.io.IOException;
+import defaultpackage.AnagramaMaker;
 
 public class MyClassTest {
     public static void main(String[] args) {
-        StringsActions action = new StringsActions();
+        AnagramaMaker action = new AnagramaMaker();
         String result = action.makeAnagram(null);
         System.out.println(result);
     }

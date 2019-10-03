@@ -1,16 +1,11 @@
-import defaultpackage.StringsActions;
+import defaultpackage.AnagramaMaker;
 import org.junit.Before;
 import org.junit.Test;
 
 import static junit.framework.Assert.*;
 
 public class StringActionsTest {
-    private static StringsActions action;
-
-    @Before
-    public  void createAction(){
-        action = new StringsActions();
-    }
+    private final AnagramaMaker action = new AnagramaMaker();
 
     @Test
     public void resultsShouldBeEqual() {
@@ -20,12 +15,26 @@ public class StringActionsTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void zeroStringShouldThrowException() {
-        action.makeAnagram("");
+        try {
+            action.makeAnagram("");
+        } catch (IllegalArgumentException e){
+            String message = "The sentence must not be empty";
+            assertEquals(e.getMessage(),message);
+            throw e;
+        }
+        fail("Illegal argument exception hasn't been thrown");
     }
 
     @Test(expected = NullPointerException.class)
     public void nullStringShouldThrowException() {
-        action.makeAnagram(null);
+        try {
+            action.makeAnagram(null);
+        }catch (NullPointerException e){
+            String message = "The sentence must not be null";
+            assertEquals(e.getMessage(),message);
+            throw e;
+        }
+        fail("Null pointer exception hasn't been thrown");
     }
 }
 
