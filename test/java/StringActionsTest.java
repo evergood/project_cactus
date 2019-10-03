@@ -2,6 +2,8 @@ import defaultpackage.AnagramaMaker;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.IllformedLocaleException;
+
 import static junit.framework.Assert.*;
 
 public class StringActionsTest {
@@ -15,26 +17,32 @@ public class StringActionsTest {
 
     @Test(expected = IllegalArgumentException.class)
     public void zeroStringShouldThrowException() {
+        String message = "The sentence must not be empty";
         try {
             action.makeAnagram("");
         } catch (IllegalArgumentException e){
-            String message = "The sentence must not be empty";
             assertEquals(e.getMessage(),message);
+            throw e;
+        }
+        try {
+            action.makeAnagram("   ");
+        } catch (IllegalArgumentException e){
+            assertEquals(e.getMessage(), message);
             throw e;
         }
         fail("Illegal argument exception hasn't been thrown");
     }
 
-    @Test(expected = NullPointerException.class)
+    @Test(expected = IllegalArgumentException.class)
     public void nullStringShouldThrowException() {
         try {
             action.makeAnagram(null);
-        }catch (NullPointerException e){
+        }catch (IllegalArgumentException e){
             String message = "The sentence must not be null";
             assertEquals(e.getMessage(),message);
             throw e;
         }
-        fail("Null pointer exception hasn't been thrown");
+        fail("Illegal argument exception hasn't been thrown");
     }
 }
 

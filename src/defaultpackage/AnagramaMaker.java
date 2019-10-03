@@ -2,15 +2,13 @@ package defaultpackage;
 
 public class AnagramaMaker {
 
-    static final String SPACE = " ";
-    private String sentence;
+    private final String SPACE = " ";
 
     public  String makeAnagram(String sentence)  {
 
         validate(sentence);
-        this.sentence = sentence;
         StringBuilder outputString = new StringBuilder();
-        for (String string : this.sentence.split(SPACE)){
+        for (String string : sentence.split(SPACE)){
             outputString = outputString.append(stringReverse(string)).append(SPACE);
         }
         return outputString.toString().trim();
@@ -18,8 +16,8 @@ public class AnagramaMaker {
 
     private static void validate (String inputString){
         if (inputString == null) {
-            throw new NullPointerException("The sentence must not be null");
-        } else if (inputString.length() == 0) {
+            throw new IllegalArgumentException("The sentence must not be null");
+        } else if (inputString.trim().isEmpty()) {
             throw new IllegalArgumentException("The sentence must not be empty");
         }
     }

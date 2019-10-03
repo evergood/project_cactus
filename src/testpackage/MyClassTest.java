@@ -4,7 +4,7 @@ import defaultpackage.AnagramaMaker;
 public class MyClassTest {
     public static void main(String[] args) {
         AnagramaMaker action = new AnagramaMaker();
-        String result = action.makeAnagram(null);
+        String result = action.makeAnagram("t555re6");
         System.out.println(result);
     }
 }
