@@ -23,19 +23,17 @@ public class AnagramaMaker {
     }
 
     private static String stringReverse(String inputString) {
-        char[] inputStringArray = inputString.toCharArray();
         char[] reversedStringArray = new char[inputString.length()];
         for (int i = 0; i < inputString.length(); i++) {
                 if (!Character.isLetter(inputString.charAt(i))) {
                     reversedStringArray[i] = inputString.charAt(i);
-                    inputStringArray[i] = '\u0000';
                 }
         }
-        for (char c:inputStringArray){
-            if (c != '\u0000'){
-                for (int i = reversedStringArray.length-1; i >= 0; i--){
-                    if (reversedStringArray[i] == '\u0000'){
-                        reversedStringArray[i] = c;
+        for (int i = 0; i < inputString.length(); i++){
+            if (Character.isLetter(inputString.charAt(i))){
+                for (int y = reversedStringArray.length-1; y >= 0; y--){
+                    if (reversedStringArray[y] == '\u0000'){
+                        reversedStringArray[y] = inputString.charAt(i);
                         break;
                     }
                 }
