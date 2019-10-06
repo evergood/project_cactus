@@ -1,48 +1,41 @@
-import defaultpackage.AnagramaMaker;
-import org.junit.Before;
+import com.foxminded.lms.AnagramaMaker;
+import org.junit.Rule;
 import org.junit.Test;
-
-import java.util.IllformedLocaleException;
+import org.junit.rules.ExpectedException;
 
 import static junit.framework.Assert.*;
 
 public class StringActionsTest {
     private final AnagramaMaker action = new AnagramaMaker();
 
+    @Rule
+    public final ExpectedException e = ExpectedException.none();
+
     @Test
-    public void resultsShouldBeEqual() {
+    public void shouldReturnAnagram() {
         String result = action.makeAnagram("tt44ews76i");
         assertEquals("is44wet76t", result);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void zeroStringShouldThrowException() {
-        String message = "The sentence must not be empty";
-        try {
-            action.makeAnagram("");
-        } catch (IllegalArgumentException e){
-            assertEquals(e.getMessage(),message);
-            throw e;
-        }
-        try {
-            action.makeAnagram("   ");
-        } catch (IllegalArgumentException e){
-            assertEquals(e.getMessage(), message);
-            throw e;
-        }
-        fail("Illegal argument exception hasn't been thrown");
+    public void shouldThrowExceptionForEmptyArgument() {
+        action.makeAnagram("");
+        e.expect(IllegalArgumentException.class);
+        e.expectMessage("The sentence is empty or contains only tabulation symbols");
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void nullStringShouldThrowException() {
-        try {
-            action.makeAnagram(null);
-        }catch (IllegalArgumentException e){
-            String message = "The sentence must not be null";
-            assertEquals(e.getMessage(),message);
-            throw e;
-        }
-        fail("Illegal argument exception hasn't been thrown");
+    public void shouldThrowExceptionForSpaceArgument() {
+        action.makeAnagram("  ");
+        e.expect(IllegalArgumentException.class);
+        e.expectMessage("The sentence is empty or contains only tabulation symbols");
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void shouldThrowExceptionForNullArgument() {
+        action.makeAnagram(null);
+        e.expect(IllegalArgumentException.class);
+        e.expectMessage("The sentence is null");
     }
 }
 
