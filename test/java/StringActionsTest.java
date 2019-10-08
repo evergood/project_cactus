@@ -9,7 +9,7 @@ public class StringActionsTest {
     private final AnagramaMaker action = new AnagramaMaker();
 
     @Rule
-    public final ExpectedException e = ExpectedException.none();
+    public  ExpectedException e = ExpectedException.none();
 
     @Test
     public void shouldReturnAnagram() {
@@ -17,25 +17,25 @@ public class StringActionsTest {
         assertEquals("is44wet76t", result);
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowExceptionForEmptyArgument() {
+        e.expect(IllegalArgumentException.class);
+        e.expectMessage("The sentence is empty or contains only tabulation symbols");
         action.makeAnagram("");
-        e.expect(IllegalArgumentException.class);
-        e.expectMessage("The sentence is empty or contains only tabulation symbols");
     }
 
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void shouldThrowExceptionForSpaceArgument() {
-        action.makeAnagram("  ");
         e.expect(IllegalArgumentException.class);
         e.expectMessage("The sentence is empty or contains only tabulation symbols");
+        action.makeAnagram("  ");
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void shouldThrowExceptionForNullArgument() {
-        action.makeAnagram(null);
+    @Test
+    public void shouldThrowExceptionForNullArgument(){
         e.expect(IllegalArgumentException.class);
         e.expectMessage("The sentence is null");
+        action.makeAnagram(null);
     }
 }
 

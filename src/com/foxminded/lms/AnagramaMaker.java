@@ -2,7 +2,7 @@ package com.foxminded.lms;
 
 public class AnagramaMaker {
 
-    private final String SPACE = " ";
+    static final String SPACE = " ";
 
     public  String makeAnagram(String sentence)  {
         validate(sentence);
@@ -26,15 +26,14 @@ public class AnagramaMaker {
     private static String stringReverse(String inputString) {
         char[] reversedString = new char[inputString.length()];
         int j = inputString.length()-1;
-        for(int i =0; i<inputString.length();i++ ){
+        for(int i = 0; i < inputString.length(); i++){
             if (!Character.isLetter(inputString.charAt(i))){
                 reversedString[i] = inputString.charAt(i);
             } else {
                 while (!Character.isLetter(inputString.charAt(j))){
                     j--;
                 }
-                reversedString[j] = inputString.charAt(i);
-                j--;
+                reversedString[j--] = inputString.charAt(i);
             }
         }
 
