@@ -1,0 +1,11 @@
+<application>
+  <component name="FileTypeManager" version="17">
+    <extensionMap>
+      <mapping pattern="tmp" type="PLAIN_TEXT" />
+      <mapping pattern="test" type="PLAIN_TEXT" />
+      <mapping pattern="test2" type="PLAIN_TEXT" />
+      <mapping pattern="Syssy" type="PLAIN_TEXT" />
+      <mapping ext="bin" type="PLAIN_TEXT" />
+    </extensionMap>
+  </component>
+</application>
