@@ -1,41 +1,33 @@
 import com.foxminded.lms.AnagramaMaker;
-import org.junit.Rule;
-import org.junit.Test;
-import org.junit.rules.ExpectedException;
+import org.junit.jupiter.api.Test;
 
-import static junit.framework.Assert.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class StringActionsTest {
-    private final AnagramaMaker action = new AnagramaMaker();
-
-    @Rule
-    public  ExpectedException e = ExpectedException.none();
+    private final AnagramaMaker anagramaMaker = new AnagramaMaker();
 
     @Test
-    public void shouldReturnAnagram() {
-        String result = action.makeAnagram("tt44ews76i");
+    void shouldReturnAnagram() {
+        String result = anagramaMaker.makeAnagram("tt44ews76i");
         assertEquals("is44wet76t", result);
     }
 
     @Test
-    public void shouldThrowExceptionForEmptyArgument() {
-        e.expect(IllegalArgumentException.class);
-        e.expectMessage("The sentence is empty or contains only tabulation symbols");
-        action.makeAnagram("");
+    void shouldThrowExceptionForEmptyArgument(){
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> anagramaMaker.makeAnagram(""));
+        assertEquals(exception.getMessage(), "The sentence is empty or contains only tabulation symbols");
     }
 
     @Test
-    public void shouldThrowExceptionForSpaceArgument() {
-        e.expect(IllegalArgumentException.class);
-        e.expectMessage("The sentence is empty or contains only tabulation symbols");
-        action.makeAnagram("  ");
+    void shouldThrowExceptionForSpaceArgument(){
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> anagramaMaker.makeAnagram(" "));
+        assertEquals(exception.getMessage(), "The sentence is empty or contains only tabulation symbols");
     }
 
     @Test
-    public void shouldThrowExceptionForNullArgument(){
-        e.expect(IllegalArgumentException.class);
-        e.expectMessage("The sentence is null");
-        action.makeAnagram(null);
+    void shouldThrowExceptionForNullArgument(){
+        Throwable exception = assertThrows(IllegalArgumentException.class, () -> anagramaMaker.makeAnagram(null));
+        assertEquals(exception.getMessage(), "The sentence is null");
     }
 }
-

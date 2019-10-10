@@ -1,5 +1,4 @@
-package testpackage;
-import com.foxminded.lms.AnagramaMaker;
+import java.com.foxminded.lms.AnagramaMaker;
 
 public class MyClassTest {
     public static void main(String[] args) {
