@@ -1,10 +1,9 @@
-package testpackage;
-import com.foxminded.lms.AnagramaMaker;
+package com.foxminded.homework;
 
 public class MyClassTest {
     public static void main(String[] args) {
         AnagramaMaker action = new AnagramaMaker();
-        String result = action.makeAnagram("t555re6");
+        String result = action.makeAnagram("AAAaaA");
         System.out.println(result);
     }
 }

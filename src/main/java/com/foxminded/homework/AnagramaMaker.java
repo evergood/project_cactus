@@ -1,4 +1,4 @@
-package com.foxminded.lms;
+package com.foxminded.homework;
 
 public class AnagramaMaker {
 
