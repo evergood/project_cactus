@@ -1,13 +1,32 @@
 package com.foxminded.homework;
 
 public class IntegerDivider {
-    public  void divide(int divident, int divisor){
+    public void divide(int divident, int divisor) {
         String dividentString = String.valueOf(divident);
-        char[][] divisionField = new char[dividentString.length()*2+2][dividentString.length()*3+1];
+        char divisorChar = Character.forDigit(divisor, 10);
+        char[][] divisionField = new char[dividentString.length() * 2 + 2][dividentString.length() * 3 + 1];
         divisionField[0][0] = '_';
-        for(int i = 1; i <= dividentString.length(); i++){
-            divisionField[0][i] = dividentString.charAt(i-1);
+        for (int i = 1; i <= dividentString.length(); i++) {
+            divisionField[0][i] = dividentString.charAt(i - 1);
         }
+        divisionField[0][dividentString.length() + 1] = '|';
+        divisionField[1][dividentString.length() + 1] = '|';
+        divisionField[2][dividentString.length() + 1] = '|';
+        divisionField[0][dividentString.length() + 2] = Character.forDigit(divisor, 10);
+
+        int m = 0;
+        int k = 1;
+
+        for (int i = 1; i < dividentString.length(); i++) {
+            if (Character.getNumericValue(divisionField[m][k]) > divisor) {
+                k = i;
+                divisionField[++m][k] = divisorChar;
+                divisionField[++m][k] = '-';
+                divisionField[++m][k] = Character.forDigit(Character.getNumericValue(divisionField[m - 3][k]) % divisor, 10);
+                divisionField[m][++k] = divisionField[0][k];
+            }
+        }
+
 
         for (int i = 0; i < divisionField.length; i++) {
             for (int j = 0; j < divisionField[i].length; j++) {
@@ -15,5 +34,8 @@ public class IntegerDivider {
             }
             System.out.println();
         }
+    }
+
+    private void findMiddleResult(char[] cell) {
     }
 }
