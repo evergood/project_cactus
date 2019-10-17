@@ -18,7 +18,8 @@ public class IntegerDivider {
         int k = 1;
 
         for (int i = 1; i < dividentString.length(); i++) {
-            if (Character.getNumericValue(divisionField[m][k]) > divisor) {
+            k = i;
+            if (middleResult(divisionField, m, k) > divisor) {
                 k = i;
                 divisionField[++m][k] = divisorChar;
                 divisionField[++m][k] = '-';
@@ -36,6 +37,10 @@ public class IntegerDivider {
         }
     }
 
-    private void findMiddleResult(char[] cell) {
+    private int middleResult(char[][] field, int row, int column) {
+        if (Character.isDigit(field[row][column-1])){
+            return Character.getNumericValue(field[row][column-1]) * 10 + Character.getNumericValue(field[row][column]);
+        }
+        else return Character.getNumericValue(field[row][column]);
     }
 }
