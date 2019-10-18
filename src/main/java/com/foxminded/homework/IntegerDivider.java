@@ -27,14 +27,20 @@ public class IntegerDivider {
 
         int m = 0;
         int k = 1;
+        int n = dividentString.length()+2;
 
         while (k <= dividentString.length()){
-            if (middleResult(divisionField, m, k) > divisor) {
+            if (middleResult(divisionField, m, k) < divisor) {
+                divisionField[m][++k] = divisionField[0][k];
+            }
+            else if (middleResult(divisionField, m, k) >= divisor) {
                 divisionField[++m][k] = Character.forDigit(middleResult(divisionField, m-1, k)/divisor*divisor%10, 10);
+                divisionField[m+1][k] = '-';
                 if (middleResult(divisionField, m-1, k)/divisor*divisor/10 > 0 ){
                     divisionField[m][k-1] = Character.forDigit(middleResult(divisionField, m-1, k)/divisor*divisor/10, 10);
+                    divisionField[m+1][k-1] = '-';
                 }
-                divisionField[++m][k] = '-';
+                m++;
                 divisionField[++m][k] = Character.forDigit(middleResult(divisionField, m-3, k) - middleResult(divisionField, m-2, k), 10);
                if (k != dividentString.length()){
                    divisionField[m][++k] = divisionField[0][k];
