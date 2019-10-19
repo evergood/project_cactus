@@ -24,8 +24,7 @@ public class IntegerDivider {
 
     private char[][] divide(int divident, int divisor) {
         String dividentString = String.valueOf(divident);
-        char divisorChar = Character.forDigit(divisor, 10);
-        char[][] divisionField = new char[dividentString.length() * 2 + 5][dividentString.length() * 3 + 1];
+        char[][] divisionField = new char[dividentString.length() * 2 + 4][dividentString.length() * 3 + 1];
         for (int i = 1; i <= dividentString.length(); i++) {
             divisionField[0][i] = dividentString.charAt(i - 1);
         }
@@ -44,7 +43,7 @@ public class IntegerDivider {
                     divisionField[2][n] = '0';
                     divisionField[1][n++] = '-';
                 }
-                if (Character.isDigit(divisionField[0][++k]) && Character.getNumericValue(divisionField[0][k]) != 0) {
+                if (Character.isDigit(divisionField[0][++k]) && (Character.getNumericValue(divisionField[0][k]) > 0 || Character.isDigit(divisionField[m][k-1]))) {
                     divisionField[m][k] = divisionField[0][k];
                 }
             }
@@ -53,7 +52,7 @@ public class IntegerDivider {
                 divisionField[2][n] = Character.forDigit(middleResult(divisionField, m-1, k)/divisor, 10);
                 divisionField[1][n++] = '-';
                 divisionField[m+1][k] = '-';
-                if (middleResult(divisionField, m-1, k)/divisor*divisor/10 > 0 ){ //если число больше 10
+                if (middleResult(divisionField, m-1, k)/divisor*divisor/10 > 0 ){
                     divisionField[m][k-1] = Character.forDigit(middleResult(divisionField, m-1, k)/divisor*divisor/10, 10);
                     divisionField[m+1][k-1] = '-';
                 }
@@ -66,7 +65,7 @@ public class IntegerDivider {
                 if(middleResult(divisionField, m-2, k) > middleResult(divisionField, m-1, k) || k == dividentString.length()){
                     divisionField[++m][k] = Character.forDigit(middleResult(divisionField, m-3, k) - middleResult(divisionField, m-2, k), 10);
                 } else m++;
-               if (k < dividentString.length() && (Character.isDigit(divisionField[m][k]) || Character.getNumericValue(divisionField[0][k+1]) >0)){
+               if (k < dividentString.length() && ((Character.getNumericValue(divisionField[0][k+1]) > 0 || Character.isDigit(divisionField[m][k]))) ){
                    divisionField[m][++k] = divisionField[0][k];
                }
                else k++;
