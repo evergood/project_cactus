@@ -2,18 +2,12 @@ package com.foxminded.homework;
 
 public class IntegerDivider {
 
-    public void integerDivide (int divident, int divisor){
+    public char[][] integerDivide(int divident, int divisor) {
         validate(divident, divisor);
-        char[][] field = divide(divident,divisor);
-        for (int i = 0; i < field.length; i++) {
-            for (int j = 0; j < field[i].length; j++) {
-                System.out.print(field[i][j]);
-            }
-            System.out.println();
-        }
+        return divide(divident, divisor);
     }
 
-    private static void validate (int inputDivident, int inputDivisor){
+    private static void validate(int inputDivident, int inputDivisor) {
         if (inputDivisor == 0) {
             throw new IllegalArgumentException("Can't divide by zero");
         }
@@ -35,52 +29,53 @@ public class IntegerDivider {
 
         int m = 0; //row
         int k = 1; //column
-        int n = dividentString.length()+2; // result pointer
+        int n = dividentString.length() + 2; // result pointer
 
-        while (k <= dividentString.length()){
+        while (k <= dividentString.length()) {
             if (middleResult(divisionField, m, k) < divisor) {
                 if (k != 1) {
                     divisionField[2][n] = '0';
                     divisionField[1][n++] = '-';
                 }
-                if (Character.isDigit(divisionField[0][++k]) && (Character.getNumericValue(divisionField[0][k]) > 0 || Character.isDigit(divisionField[m][k-1]))) {
-                    divisionField[m][k] = divisionField[0][k];
+                if (isEligibleForTransferAfterZeroResultDigit(divisionField, m, k)) {
+                    divisionField[m][++k] = divisionField[0][k];
                 }
-            }
-            else {
-                divisionField[++m][k] = Character.forDigit(middleResult(divisionField, m-1, k)/divisor*divisor%10, 10);
-                divisionField[2][n] = Character.forDigit(middleResult(divisionField, m-1, k)/divisor, 10);
+            } else {
+                divisionField[++m][k] = Character.forDigit(middleResult(divisionField, m - 1, k) / divisor * divisor % 10, 10);
+                divisionField[2][n] = Character.forDigit(middleResult(divisionField, m - 1, k) / divisor, 10);
                 divisionField[1][n++] = '-';
-                divisionField[m+1][k] = '-';
-                if (middleResult(divisionField, m-1, k)/divisor*divisor/10 > 0 ){
-                    divisionField[m][k-1] = Character.forDigit(middleResult(divisionField, m-1, k)/divisor*divisor/10, 10);
-                    divisionField[m+1][k-1] = '-';
+                divisionField[m + 1][k] = '-';
+                if (middleResult(divisionField, m - 1, k) / divisor * divisor / 10 > 0) {
+                    divisionField[m][k - 1] = Character.forDigit(middleResult(divisionField, m - 1, k) / divisor * divisor / 10, 10);
+                    divisionField[m + 1][k - 1] = '-';
                 }
-                if (Character.isDigit(divisionField[m-1][k-1]) && Character.getNumericValue(divisionField[m-1][k-1]) != 0 ){
-                    divisionField[m-1][k-2] = '_';
+                if (Character.isDigit(divisionField[m - 1][k - 1]) && Character.getNumericValue(divisionField[m - 1][k - 1]) != 0) {
+                    divisionField[m - 1][k - 2] = '_';
                 } else {
-                    divisionField[m-1][k-1] = '_';
+                    divisionField[m - 1][k - 1] = '_';
                 }
                 m++;
-                if(middleResult(divisionField, m-2, k) > middleResult(divisionField, m-1, k) || k == dividentString.length()){
-                    divisionField[++m][k] = Character.forDigit(middleResult(divisionField, m-3, k) - middleResult(divisionField, m-2, k), 10);
+                if (middleResult(divisionField, m - 2, k) > middleResult(divisionField, m - 1, k) || k == dividentString.length()) {
+                    divisionField[++m][k] = Character.forDigit(middleResult(divisionField, m - 3, k) - middleResult(divisionField, m - 2, k), 10);
                 } else m++;
-               if (k < dividentString.length() && ((Character.getNumericValue(divisionField[0][k+1]) > 0 || Character.isDigit(divisionField[m][k]))) ){
-                   divisionField[m][++k] = divisionField[0][k];
-               }
-               else k++;
+                if (isEligibleForTransferAfterDifferenceCalculation(divisionField, m,  k, dividentString)) {
+                    divisionField[m][++k] = divisionField[0][k];
+                } else k++;
             }
         }
 
         return divisionField;
     }
 
-    private int middleResult(char[][] field, int row, int column) {
-        if (Character.isDigit(field[row][column-1])){
-            return Character.getNumericValue(field[row][column-1]) * 10 + Character.getNumericValue(field[row][column]);
-        }
-        else{
-            return Character.getNumericValue(field[row][column]);
-        }
+    private static int middleResult(char[][] field, int row, int column) {
+        return Character.isDigit(field[row][column - 1]) ? Character.getNumericValue(field[row][column - 1]) * 10 + Character.getNumericValue(field[row][column]) : Character.getNumericValue(field[row][column]);
+    }
+
+    private static boolean isEligibleForTransferAfterZeroResultDigit(char[][] field, int row, int column) {
+        return Character.isDigit(field[0][++column]) && (Character.getNumericValue(field[0][column]) > 0 || Character.isDigit(field[row][column - 1]));
+    }
+
+    private static boolean isEligibleForTransferAfterDifferenceCalculation(char [][] field, int row, int column, String divident){
+        return  column < divident.length() && ((Character.getNumericValue(field[0][column + 1]) > 0 || Character.isDigit(field[row][column])));
     }
 }

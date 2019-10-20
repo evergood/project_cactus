@@ -14,6 +14,6 @@ public class MyClassTest {
 
     public static void main(String[] args) {
         IntegerDivider integerDivider = new IntegerDivider();
-        integerDivider.integerDivide(500000007,5);
+        System.out.println(printArray(integerDivider.integerDivide(100345, 5)));
     }
 }
