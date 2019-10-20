@@ -41,23 +41,23 @@ public class IntegerDivider {
                     divisionField[m][++k] = divisionField[0][k];
                 }
             } else {
-                divisionField[++m][k] = Character.forDigit(middleResult(divisionField, m - 1, k) / divisor * divisor % 10, 10);
-                divisionField[2][n] = Character.forDigit(middleResult(divisionField, m - 1, k) / divisor, 10);
+                divisionField[++m][k] = Character.forDigit(subtrahend(divisionField, m, k, divisor) % 10, 10);
+                divisionField[2][n] = Character.forDigit(quotient(divisionField, m, k, divisor), 10);
                 divisionField[1][n++] = '-';
                 divisionField[m + 1][k] = '-';
-                if (middleResult(divisionField, m - 1, k) / divisor * divisor / 10 > 0) {
-                    divisionField[m][k - 1] = Character.forDigit(middleResult(divisionField, m - 1, k) / divisor * divisor / 10, 10);
+                if (subtrahend(divisionField, m, k, divisor) / 10 > 0) {
+                    divisionField[m][k - 1] = Character.forDigit(subtrahend(divisionField, m, k, divisor) / 10, 10);
                     divisionField[m + 1][k - 1] = '-';
                 }
-                if (Character.isDigit(divisionField[m - 1][k - 1]) && Character.getNumericValue(divisionField[m - 1][k - 1]) != 0) {
+                if (isEligibleToPutMinus(divisionField, m, k)) {
                     divisionField[m - 1][k - 2] = '_';
                 } else {
                     divisionField[m - 1][k - 1] = '_';
                 }
                 m++;
-                if (middleResult(divisionField, m - 2, k) > middleResult(divisionField, m - 1, k) || k == dividentString.length()) {
-                    divisionField[++m][k] = Character.forDigit(middleResult(divisionField, m - 3, k) - middleResult(divisionField, m - 2, k), 10);
-                } else m++;
+                if (difference(divisionField, ++m, k) > 0 || k == dividentString.length()){
+                    divisionField[m][k] = Character.forDigit(difference(divisionField, m, k), 10);
+                }
                 if (isEligibleForTransferAfterDifferenceCalculation(divisionField, m,  k, dividentString)) {
                     divisionField[m][++k] = divisionField[0][k];
                 } else k++;
@@ -77,5 +77,21 @@ public class IntegerDivider {
 
     private static boolean isEligibleForTransferAfterDifferenceCalculation(char [][] field, int row, int column, String divident){
         return  column < divident.length() && ((Character.getNumericValue(field[0][column + 1]) > 0 || Character.isDigit(field[row][column])));
+    }
+
+    private static boolean isEligibleToPutMinus (char[][] field, int row, int column){
+        return Character.isDigit(field[row - 1][column - 1]) && Character.getNumericValue(field[row - 1][column - 1]) != 0;
+    }
+
+    private static int quotient (char[][] field, int row, int column, int divisor){
+        return middleResult(field, row - 1, column) / divisor;
+    }
+
+    private static int subtrahend (char [][] field, int row, int column, int divisor){
+        return quotient(field, row, column, divisor) * divisor;
+    }
+
+    private static int difference (char [][] field, int row, int column) {
+        return middleResult(field, row - 3, column) - middleResult(field, row - 2, column);
     }
 }
