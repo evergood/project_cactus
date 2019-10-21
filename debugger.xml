@@ -4,10 +4,15 @@
       <Renderer ID="CompoundTypeRenderer">
         <option name="ENABLED" value="true" />
         <option name="QUALIFIED_NAME" value="char[][]" />
+        <Renderer ID="LabelRenderer" role="label">
+          <option name="QUALIFIED_NAME" value="char[][]" />
+          <option name="ON_DEMAND" value="false" />
+          <option name="LABEL_EXPRESSION" value="com.foxminded.homework.MyClassTest.printArray(this);&#13;&#13;JAVA" />
+        </Renderer>
         <Renderer ID="ExpressionChildrenRenderer" role="children">
           <option name="QUALIFIED_NAME" value="char[][]" />
           <option name="CHILDREN_EXPANDABLE" value="&#13;&#13;JAVA" />
-          <option name="CHILDREN_EXPRESSION" expression="for (int i = 0; i &lt; 10; i++) {&#10;    for (int j = 0; j &lt; 10; j++) {&#10;        System.out.print(this[i][j]);&#10;    }&#10;    System.out.println();&#10;}" language="JAVA" mode="CODE_FRAGMENT" />
+          <option name="CHILDREN_EXPRESSION" />
         </Renderer>
       </Renderer>
     </CustomRenderers>
