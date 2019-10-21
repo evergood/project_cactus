@@ -18,7 +18,7 @@ public class IntegerDivider {
 
     private char[][] divide(int divident, int divisor) {
         String dividentString = String.valueOf(divident);
-        char[][] divisionField = new char[dividentString.length() * 2 + 4][dividentString.length() * 3 + 1];
+        char[][] divisionField = new char[dividentString.length() * 2 + 8][dividentString.length() * 3 + 1];
         for (int i = 1; i <= dividentString.length(); i++) {
             divisionField[0][i] = dividentString.charAt(i - 1);
         }
@@ -37,8 +37,8 @@ public class IntegerDivider {
                     divisionField[2][n] = '0';
                     divisionField[1][n++] = '-';
                 }
-                if (isEligibleForTransferAfterZeroResultDigit(divisionField, m, k)) {
-                    divisionField[m][++k] = divisionField[0][k];
+                if (isEligibleForTransferAfterZeroResultDigit(divisionField, m, ++k)) {
+                    divisionField[m][k] = divisionField[0][k];
                 }
             } else {
                 divisionField[++m][k] = Character.forDigit(subtrahend(divisionField, m, k, divisor) % 10, 10);
@@ -72,7 +72,7 @@ public class IntegerDivider {
     }
 
     private static boolean isEligibleForTransferAfterZeroResultDigit(char[][] field, int row, int column) {
-        return Character.isDigit(field[0][++column]) && (Character.getNumericValue(field[0][column]) > 0 || Character.isDigit(field[row][column - 1]));
+        return Character.isDigit(field[0][column]) && (Character.getNumericValue(field[0][column]) > 0 || Character.isDigit(field[row][column - 1]));
     }
 
     private static boolean isEligibleForTransferAfterDifferenceCalculation(char [][] field, int row, int column, String divident){

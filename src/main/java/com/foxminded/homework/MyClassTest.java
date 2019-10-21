@@ -12,7 +12,7 @@ public class MyClassTest {
         return output;
     }
 
-    public static int getDivideResult (char[][] field, int divident, int divisor){
+    public static int getDividentResult (char[][] field, int divident, int divisor){
         String result = "";
         String dividentString = String.valueOf(divident);
         for (int i = dividentString.length() + 2; i <= dividentString.length()*2; i++){
@@ -24,10 +24,10 @@ public class MyClassTest {
     public static void main(String[] args) {
         IntegerDivider integerDivider = new IntegerDivider();
         int divident = 1234500777;
-        int divisor = 6;
+        int divisor = 5;
         char [][] resultField = integerDivider.integerDivide(divident, divisor);
-        //System.out.println(printArray(resultField));
-        System.out.println(printArray(integerDivider.integerDivide(1234500777, 3)));
-        //System.out.println(getDivideResult(resultField, divident, divisor));
+        System.out.println(printArray(resultField));
+        //System.out.println(printArray(integerDivider.integerDivide(1234007770, 5)));
+        System.out.println(getDividentResult(resultField, divident, divisor));
     }
 }
