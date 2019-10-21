@@ -1,3 +1,5 @@
+package java;
+
 import com.foxminded.homework.AnagramaMaker;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
