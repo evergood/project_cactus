@@ -23,7 +23,7 @@ public class MyClassTest {
 
     public static void main(String[] args) {
         IntegerDivider integerDivider = new IntegerDivider();
-        int divident = 1234500777;
+        int divident = 12345777;
         int divisor = 5;
         char [][] resultField = integerDivider.integerDivide(divident, divisor);
         System.out.println(printArray(resultField));

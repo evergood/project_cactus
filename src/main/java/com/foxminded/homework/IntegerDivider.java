@@ -68,19 +68,23 @@ public class IntegerDivider {
     }
 
     private static int middleResult(char[][] field, int row, int column) {
-        return Character.isDigit(field[row][column - 1]) ? Character.getNumericValue(field[row][column - 1]) * 10 + Character.getNumericValue(field[row][column]) : Character.getNumericValue(field[row][column]);
+        return Character.isDigit(field[row][column - 1]) ? Character.getNumericValue(field[row][column - 1]) * 10 +
+                Character.getNumericValue(field[row][column]) : Character.getNumericValue(field[row][column]);
     }
 
     private static boolean isEligibleForTransferAfterZeroResultDigit(char[][] field, int row, int column) {
-        return Character.isDigit(field[0][column]) && (Character.getNumericValue(field[0][column]) > 0 || Character.isDigit(field[row][column - 1]));
+        return Character.isDigit(field[0][column]) && (Character.getNumericValue(field[0][column]) > 0
+                || Character.isDigit(field[row][column - 1]));
     }
 
     private static boolean isEligibleForTransferAfterDifferenceCalculation(char [][] field, int row, int column, String divident){
-        return  column < divident.length() && ((Character.getNumericValue(field[0][column + 1]) > 0 || Character.isDigit(field[row][column])));
+        return  column < divident.length() && ((Character.getNumericValue(field[0][column + 1]) > 0
+                || Character.isDigit(field[row][column])));
     }
 
     private static boolean isEligibleToPutMinus (char[][] field, int row, int column){
-        return Character.isDigit(field[row - 1][column - 1]) && Character.getNumericValue(field[row - 1][column - 1]) != 0;
+        return Character.isDigit(field[row - 1][column - 1]) &&
+                Character.getNumericValue(field[row - 1][column - 1]) != 0;
     }
 
     private static int quotient (char[][] field, int row, int column, int divisor){
