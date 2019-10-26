@@ -7,12 +7,12 @@
         <Renderer ID="LabelRenderer" role="label">
           <option name="QUALIFIED_NAME" value="char[][]" />
           <option name="ON_DEMAND" value="false" />
-          <option name="LABEL_EXPRESSION" value="com.foxminded.homework.MyClassTest.printArray(this);&#13;&#13;JAVA" />
+          <option name="LABEL_EXPRESSION" expression="com.foxminded.homework.DivisionOutput.arrayToString(this)" language="JAVA" mode="CODE_FRAGMENT" />
         </Renderer>
         <Renderer ID="ExpressionChildrenRenderer" role="children">
           <option name="QUALIFIED_NAME" value="char[][]" />
           <option name="CHILDREN_EXPANDABLE" value="&#13;&#13;JAVA" />
-          <option name="CHILDREN_EXPRESSION" />
+          <option name="CHILDREN_EXPRESSION" value="&#13;&#13;JAVA" />
         </Renderer>
       </Renderer>
     </CustomRenderers>
