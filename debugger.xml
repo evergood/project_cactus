@@ -7,7 +7,7 @@
         <Renderer ID="LabelRenderer" role="label">
           <option name="QUALIFIED_NAME" value="char[][]" />
           <option name="ON_DEMAND" value="false" />
-          <option name="LABEL_EXPRESSION" expression="com.foxminded.homework.DivisionOutput.arrayToString(this)" language="JAVA" mode="CODE_FRAGMENT" />
+          <option name="LABEL_EXPRESSION" expression="com.foxminded.homework.IntegerDivider.arrayToString(this)" language="JAVA" mode="CODE_FRAGMENT" />
         </Renderer>
         <Renderer ID="ExpressionChildrenRenderer" role="children">
           <option name="QUALIFIED_NAME" value="char[][]" />
