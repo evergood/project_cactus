@@ -10,6 +10,10 @@
           <option name="url" value="http://git.foxminded.com.ua" />
           <option name="userName" value="evergood" />
         </UrlAndUserName>
+        <UrlAndUserName>
+          <option name="url" value="http://git.foxminded.com.ua/evergood/project-willow.git" />
+          <option name="userName" value="" />
+        </UrlAndUserName>
       </list>
     </option>
     <option name="cloneParentDir" value="D:\Java" />
